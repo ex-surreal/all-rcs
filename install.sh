@@ -5,18 +5,20 @@ if ! [ -x "$(command -v brew)" ]; then
   /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 fi
 
-brew update
+if ! [[ "$(brew list -1 | grep '^zsh$')" == "" ]]; then
+  brew update
+  # Install necessary things
+  brew install zsh
+  brew cleanup
+fi
 
-# Install necessary things
-brew install zsh
+if ! [ -d "~/.oh-my-zsh" ]; then
+  # Install oh-my-zsh
+  sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+fi
 
-brew cleanup
-
-# Install oh-my-zsh
-sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-
-# Set zsh as default shell
-chsh -s $(which zsh)
+# Install plugin manager for vim
+curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 predir=$(pwd)
 cd $(dirname $0)
