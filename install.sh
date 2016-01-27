@@ -12,7 +12,7 @@ if ! [[ "$(brew list -1 | grep '^zsh$')" == "" ]]; then
   brew cleanup
 fi
 
-if ! [ -d "~/.oh-my-zsh" ]; then
+if ! [ -d "$HOME/.oh-my-zsh" ]; then
   # Install oh-my-zsh
   sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 fi
