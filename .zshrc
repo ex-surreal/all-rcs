@@ -45,7 +45,7 @@ export UPDATE_ZSH_DAYS=5
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(zsh-syntax-highlighting z brew)
+plugins=(git)
 
 # User configuration
 
@@ -64,8 +64,6 @@ if [[ -n $SSH_CONNECTION ]]; then
 else
   export EDITOR='vim'
 fi
-
-fpath=(/usr/local/share/zsh-completions $fpath)
 
 # For python
 export PYTHONSTARTUP=~/.pythonrc
