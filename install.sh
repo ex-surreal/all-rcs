@@ -1,5 +1,23 @@
 #!/bin/bash
 
+# Install brew if not exists
+if ! [ -x "$(command -v brew)" ]; then
+  /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+fi
+
+brew update
+
+# Install necessary things
+brew install zsh
+
+brew cleanup
+
+# Install oh-my-zsh
+sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+
+# Set zsh as default shell
+chsh -s $(which zsh)
+
 predir=$(pwd)
 cd $(dirname $0)
 dir=$(pwd)
