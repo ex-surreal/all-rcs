@@ -2,9 +2,9 @@ set nocompatible              " be iMproved, required
 filetype off                  " required
 
 call plug#begin('~/.vim/plugged')
+
 Plug 'altercation/vim-colors-solarized'
 Plug 'Valloric/YouCompleteMe', {'dir': '~/.vim/plugged/YouCompleteMe', 'do': './install.sh --clang-completer --system-clang'}
-Plug 'mxw/vim-jsx'
 Plug 'jiangmiao/auto-pairs'
 Plug 'ex-surreal/buildrc'
 
@@ -40,7 +40,3 @@ set tabstop=4 expandtab softtabstop=4 shiftwidth=4
 
 " Remove swap file
 set noswapfile
-
-" React settings
-let g:jsx_ext_required = 0 " Allow JSX in normal JS files
-let g:syntastic_javascript_checkers = ['eslint']
