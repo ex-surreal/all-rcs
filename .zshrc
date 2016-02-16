@@ -45,7 +45,7 @@ export UPDATE_ZSH_DAYS=5
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
+plugins=(git z python brew zsh-syntax-highlighting brew-cask)
 
 # User configuration
 
@@ -80,9 +80,15 @@ export PYTHONSTARTUP=~/.pythonrc
 # For a full list of active aliases, run `alias`.
 #
 # Example aliases
+
+if [ -f "$HOME/.bash_profile" ]; then
+    source "$HOME/.bash_profile"
+fi
+
 alias zcnf="$EDITOR ~/.zshrc"
 alias ohmyzsh="vim ~/.oh-my-zsh"
 alias vcnf="$EDITOR ~/.vimrc"
 alias loadz="source ~/.zshrc"
 alias gvcnf="$EDITOR ~/.gvimrc"
 alias breu="brew update && brew upgrade --outdated && brew cleanup"
+alias gpp="g++ --std=c++11 -Wall"

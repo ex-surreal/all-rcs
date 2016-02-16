@@ -4,7 +4,7 @@ filetype off                  " required
 call plug#begin('~/.vim/plugged')
 
 Plug 'altercation/vim-colors-solarized'
-Plug 'Valloric/YouCompleteMe', {'dir': '~/.vim/plugged/YouCompleteMe', 'do': './install.sh --clang-completer --system-clang'}
+Plug 'Valloric/YouCompleteMe'
 Plug 'jiangmiao/auto-pairs'
 Plug 'ex-surreal/buildrc'
 
@@ -16,7 +16,7 @@ call plug#end()            " required
 filetype indent plugin on
 
 " Syntax start
-let g:solarized_termcolors=256
+" let g:solarized_termcolors=256
 syntax enable
 set background=dark
 colorscheme solarized
