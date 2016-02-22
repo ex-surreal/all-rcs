@@ -5,11 +5,10 @@ if ! [ -x "$(command -v brew)" ]; then
   /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 fi
 
-if ! [[ "$(brew list -1 | grep '^zsh$')" == "" ]]; then
+if [[ "$(brew list --versions zsh)" == "" ]]; then
   brew update
-  # Install necessary things
+  # Install zsh
   brew install zsh
-  brew cleanup
 fi
 
 if ! [ -d "$HOME/.oh-my-zsh" ]; then
@@ -17,8 +16,10 @@ if ! [ -d "$HOME/.oh-my-zsh" ]; then
   sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 fi
 
-# Install plugin manager for vim
-curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+if ! [ -f "$HOME/.vim/autoload/plug.vim" ]; then
+  # Install plugin manager for vim
+  curl -fLo "$HOME/.vim/autoload/plug.vim" --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+fi
 
 predir=$(pwd)
 cd $(dirname $0)
