@@ -45,7 +45,7 @@ export UPDATE_ZSH_DAYS=5
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git z python brew zsh-syntax-highlighting brew-cask)
+plugins=(git z python brew zsh-syntax-highlighting brew-cask npm)
 
 # User configuration
 
@@ -92,3 +92,5 @@ alias loadz="source ~/.zshrc"
 alias gvcnf="$EDITOR ~/.gvimrc"
 alias breu="brew update && brew upgrade --outdated && brew cleanup"
 alias gpp="g++ --std=c++11 -Wall"
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
