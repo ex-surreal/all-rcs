@@ -4,7 +4,7 @@ filetype off                  " required
 call plug#begin("$HOME/.vim/plugged")
 
 Plug 'altercation/vim-colors-solarized'
-Plug 'Valloric/YouCompleteMe'
+Plug 'Valloric/YouCompleteMe', {'dir': '~/.vim/plugged/YouCompleteMe', 'do': './install.py --clang-completer'}
 Plug 'jiangmiao/auto-pairs'
 Plug 'ex-surreal/buildrc'
 Plug 'tpope/vim-commentary'
@@ -14,6 +14,8 @@ call plug#end()            " required
 
 " Plugin settings
 let g:ycm_confirm_extra_conf = 0
+set completeopt-=preview
+let g:ycm_add_preview_to_completeop = 0
 
 " Attempt to determine the type of a file based on its name and possibly its
 " contents. Use this to allow intelligent auto-indenting for each filetype,
@@ -58,10 +60,6 @@ set splitbelow
 set splitright
 
 " Disable arrow keys
-imap <Up> <Nop>
-imap <Down> <Nop>
-imap <Left> <Nop>
-imap <Right> <Nop>
 nmap <Up> <Nop>
 nmap <Down> <Nop>
 nmap <Left> <Nop>
