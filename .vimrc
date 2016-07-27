@@ -4,11 +4,13 @@ filetype off                  " required
 call plug#begin("$HOME/.vim/plugged")
 
 Plug 'altercation/vim-colors-solarized'
-Plug 'Valloric/YouCompleteMe', {'dir': '~/.vim/plugged/YouCompleteMe', 'do': './install.py --clang-completer'}
+Plug 'Valloric/YouCompleteMe'
 Plug 'jiangmiao/auto-pairs'
-Plug 'ex-surreal/buildrc'
 Plug 'tpope/vim-commentary'
-Plug 'junegunn/fzf', {'dir': '~/.fzf', 'do': './install --all'}
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'jaxbot/browserlink.vim'
+Plug 'easymotion/vim-easymotion'
 
 call plug#end()            " required
 
@@ -23,7 +25,6 @@ let g:ycm_add_preview_to_completeop = 0
 filetype indent plugin on
 
 " Syntax start
-" let g:solarized_termcolors=256
 syntax enable
 set background=dark
 colorscheme solarized
@@ -44,6 +45,9 @@ set number
 
 " Indentation
 set tabstop=4 expandtab softtabstop=4 shiftwidth=4
+
+" Relative line number
+set relativenumber
 
 " Remove swap file
 set noswapfile
@@ -68,3 +72,10 @@ vmap <Up> <Nop>
 vmap <Down> <Nop>
 vmap <Left> <Nop>
 vmap <Right> <Nop>
+imap <Up> <Nop>
+imap <Down> <Nop>
+imap <Left> <Nop>
+imap <Right> <Nop>
+
+" Disable mouse
+set mouse=
