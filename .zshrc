@@ -45,7 +45,7 @@ export UPDATE_ZSH_DAYS=5
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git z python brew zsh-syntax-highlighting brew-cask npm)
+plugins=(git z python brew zsh-syntax-highlighting brew-cask vi-mode history-substring-search)
 
 # User configuration
 
@@ -85,12 +85,19 @@ if [ -f "$HOME/.bash_profile" ]; then
     source "$HOME/.bash_profile"
 fi
 
+# Reduce to dalay to go to normal mode
+export KEYTIMEOUT=1
+
+# Settings for vi-mode
+
+export MODE_INDICATOR="[NORMAL]"
+
 alias zcnf="$EDITOR ~/.zshrc"
 alias ohmyzsh="vim ~/.oh-my-zsh"
 alias vcnf="$EDITOR ~/.vimrc"
 alias loadz="source ~/.zshrc"
 alias gvcnf="$EDITOR ~/.gvimrc"
-alias breu="brew update && brew upgrade --outdated && brew cleanup"
+alias breu="brew update && brew upgrade --outdated && brew cleanup && brew cask update && brew cask cleanup"
 alias gpp="g++ --std=c++11 -Wall"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
