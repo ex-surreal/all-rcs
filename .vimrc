@@ -43,11 +43,11 @@ set autoindent
 " Show line number
 set number
 
-" Indentation
-set tabstop=4 expandtab softtabstop=4 shiftwidth=4
-
 " Relative line number
 set relativenumber
+
+" Indentation
+set tabstop=4 expandtab softtabstop=4 shiftwidth=4
 
 " Remove swap file
 set noswapfile
