@@ -20,6 +20,6 @@ cd $(dirname $0)
 dir=$(pwd)
 cd $predir
 
-source $dir/vim/script.sh
-source $dir/zsh/script.sh
-source $dir/git/script.sh
+$dir/vim/script.sh
+$dir/zsh/script.sh
+$dir/git/script.sh
