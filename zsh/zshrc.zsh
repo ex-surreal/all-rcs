@@ -66,7 +66,7 @@ else
 fi
 
 # For python
-export PYTHONSTARTUP=~/.pythonrc
+[ -f ~/.pythonrc ] && export PYTHONSTARTUP=~/.pythonrc
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -81,16 +81,17 @@ export PYTHONSTARTUP=~/.pythonrc
 #
 # Example aliases
 
-[ -f ~/.bash_profile ] && source "$HOME/.bash_profile"
+alias breu="brew update && brew upgrade --outdated && brew cleanup && brew cask cleanup"
+alias gpp="g++ --std=c++11 -Wall"
+
+stty -ixon
+
+[ -f ~/.bash_profile ] && source ~/.bash_profile
 
 # Reduce to dalay to go to normal mode
 export KEYTIMEOUT=1
 
 # Settings for vi-mode
-
 export MODE_INDICATOR="[NORMAL]"
-
-alias breu="brew update && brew upgrade --outdated && brew cleanup && brew cask update && brew cask cleanup"
-alias gpp="g++ --std=c++11 -Wall"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
