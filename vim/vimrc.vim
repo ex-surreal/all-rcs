@@ -7,7 +7,6 @@ source ~/.vim/dotfiles/common.vim
 
 " Use plugin colorscheme
 set background=dark
-colorscheme solarized
 
 " Disable arrow keys
 map <Up> <Nop>
@@ -18,6 +17,10 @@ imap <Up> <Nop>
 imap <Down> <Nop>
 imap <Left> <Nop>
 imap <Right> <Nop>
+
+" Use <c-s> for saving Required: $ stty -ixon 
+inoremap <c-s> <esc>:w<cr>
+noremap <c-s> :w<cr>
 
 " Disable mouse
 set mouse=
