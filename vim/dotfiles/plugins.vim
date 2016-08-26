@@ -14,7 +14,12 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'majutsushi/tagbar'
 Plug 'craigemery/vim-autotag'
-Plug 'shawncplus/phpcomplete.vim'
+Plug 'ex-surreal/vim-ok'
+Plug 'tpope/vim-dispatch'
+" Plug 'Shougo/vimproc.vim', {'do' : 'make'}
+" Plug 'm2mdas/phpcomplete-extended'
+" Plug 'm2mdas/phpcomplete-extended-laravel'
+" Plug 'm2mdas/phpcomplete-extended-symfony'
 
 call plug#end()            " required
 
@@ -26,6 +31,7 @@ set completeopt-=preview
 let g:ycm_add_preview_to_completeop = 0
 let g:ycm_key_list_select_completion = ['<TAB>']
 let g:ycm_key_list_previous_completion = ['<S-TAB>']
+let g:ycm_always_populate_location_list = 1
 
 " Settings for Nerd Tree
 map <C-n> :NERDTreeToggle<CR>
@@ -46,3 +52,6 @@ if ! has('gui_running')
   augroup END
 endif
 
+" Settings for PHP complete
+" autocmd  FileType  php setlocal omnifunc=phpcomplete_extended#CompletePHP
+" let g:phpcomplete_index_composer_command = 'composer '
