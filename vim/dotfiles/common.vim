@@ -24,7 +24,7 @@ set number
 set relativenumber
 
 " Indentation
-set tabstop=4 expandtab softtabstop=4 shiftwidth=4
+set tabstop=2 expandtab softtabstop=2 shiftwidth=2
 
 " Remove swap file
 set noswapfile

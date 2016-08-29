@@ -1,7 +1,7 @@
 call plug#begin("$HOME/.vim/plugged")
 
 Plug 'altercation/vim-colors-solarized'
-Plug 'Valloric/YouCompleteMe' 
+Plug 'Valloric/YouCompleteMe'
 Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-commentary'
 Plug 'vim-airline/vim-airline'
@@ -16,10 +16,8 @@ Plug 'majutsushi/tagbar'
 Plug 'craigemery/vim-autotag'
 Plug 'ex-surreal/vim-ok'
 Plug 'tpope/vim-dispatch'
-" Plug 'Shougo/vimproc.vim', {'do' : 'make'}
-" Plug 'm2mdas/phpcomplete-extended'
-" Plug 'm2mdas/phpcomplete-extended-laravel'
-" Plug 'm2mdas/phpcomplete-extended-symfony'
+Plug 'artur-shaik/vim-javacomplete2'
+Plug 'airblade/vim-gitgutter'
 
 call plug#end()            " required
 
@@ -37,7 +35,7 @@ let g:ycm_always_populate_location_list = 1
 map <C-n> :NERDTreeToggle<CR>
 
 " Extra Settings
-let g:EclimCompletionMethod = 'omnifunc'
+autocmd FileType java setlocal omnifunc=javacomplete#Complete
 
 " Airline settings
 set laststatus=2
