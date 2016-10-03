@@ -50,6 +50,8 @@ if ! has('gui_running')
   augroup END
 endif
 
+let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files']
+
 " Settings for PHP complete
 " autocmd  FileType  php setlocal omnifunc=phpcomplete_extended#CompletePHP
 " let g:phpcomplete_index_composer_command = 'composer '
