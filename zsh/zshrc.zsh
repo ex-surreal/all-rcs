@@ -95,3 +95,8 @@ export KEYTIMEOUT=1
 export MODE_INDICATOR="[NORMAL]"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+export NVM_DIR="$HOME/.nvm"
+function nvm {
+  . "$(brew --prefix nvm)/nvm.sh" && echo 'nvm installed'
+}
