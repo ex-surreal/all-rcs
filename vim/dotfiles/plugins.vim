@@ -16,7 +16,6 @@ Plug 'majutsushi/tagbar'
 Plug 'craigemery/vim-autotag'
 Plug 'ex-surreal/vim-ok'
 Plug 'tpope/vim-dispatch'
-Plug 'artur-shaik/vim-javacomplete2'
 Plug 'airblade/vim-gitgutter'
 
 call plug#end()            " required
