@@ -31,5 +31,8 @@ set exrc
 " Securing the local vimrc's action
 set secure
 
+" Show the sign column always
+set signcolumn=yes
+
 " Temp mapping for converting 4-tab to 2-tab
 nnoremap <silent> <leader>= :set ts=4 sts=4 noet \| retab! \| set ts=2 sts=2 et \| retab<cr>
