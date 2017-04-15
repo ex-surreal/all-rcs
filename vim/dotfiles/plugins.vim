@@ -14,9 +14,17 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'majutsushi/tagbar'
 Plug 'craigemery/vim-autotag'
-Plug 'ex-surreal/vim-ok'
+Plug 'ex-surreal/vim-std-io'
 Plug 'tpope/vim-dispatch'
 Plug 'airblade/vim-gitgutter'
+Plug 'vim-syntastic/syntastic'
+" Plug 'othree/yajs.vim'
+Plug 'pangloss/vim-javascript'
+Plug 'mxw/vim-jsx'
+" Plug 'chemzqm/vim-jsx-improve'
+Plug 'gavocanov/vim-js-indent'
+Plug 'mtscout6/syntastic-local-eslint.vim'
+Plug 'alvan/vim-closetag'
 
 call plug#end()            " required
 
@@ -34,7 +42,7 @@ let g:ycm_always_populate_location_list = 1
 map <C-n> :NERDTreeToggle<CR>
 
 " Extra Settings
-autocmd FileType java setlocal omnifunc=javacomplete#Complete
+" autocmd FileType java setlocal omnifunc=javacomplete#Complete
 
 " Airline settings
 set laststatus=2
@@ -51,6 +59,27 @@ endif
 
 let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files']
 
+" Allow JSX in normal JS files
+let g:jsx_ext_required = 0
+
 " Settings for PHP complete
 " autocmd  FileType  php setlocal omnifunc=phpcomplete_extended#CompletePHP
 " let g:phpcomplete_index_composer_command = 'composer '
+
+" Syntastic settings
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+let g:syntastic_javascript_checkers = ['eslint']
+
+" close-tag settings
+let g:closetag_filenames = "*.html,*.xhtml,*.phtml,*.js"
+
+" std-io settings
+let g:std_io_user_command = {'javascript.jsx': "'node ' . expand('%:p')"}

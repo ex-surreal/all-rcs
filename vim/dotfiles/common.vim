@@ -39,3 +39,6 @@ nnoremap <C-H> <C-W><C-H>
 " Instinctive split
 set splitbelow
 set splitright
+
+" Spell checking
+set spell spelllang=en_us
