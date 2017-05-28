@@ -1,17 +1,19 @@
 #!/bin/sh
 
 if [[ "$OSTYPE" == "darwin"* ]]; then # OSX
-  # Install brew if not exists
+
   if ! [ -x "$(command -v brew)" ]; then
-    /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+    /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)" || { exit 1 }
   fi
 
   brew update
   # Install minimum env
-  brew install zsh vim git
+  brew install zsh vim git tmux
 
 elif [[ "$OSTYPE" == "linux"* ]]; then # LINUX
-  pacman -S zsh git vim --noconfirm -q
+
+  sudo pacman -S tmux python zsh git vim --noconfirm -q || { exit 1 }
+
 fi
 
 # TODO: install zsh for ubuntu
@@ -21,6 +23,6 @@ cd $(dirname $0)
 dir=$(pwd)
 cd $predir
 
-$dir/vim/script.sh
-$dir/zsh/script.sh
-$dir/git/script.sh
+$dir/vim/script.sh || { exit 1 }
+$dir/zsh/script.sh || { exit 1 }
+$dir/git/script.sh || { exit 1 }
