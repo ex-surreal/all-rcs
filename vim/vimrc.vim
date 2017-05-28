@@ -6,7 +6,9 @@ source ~/.vim/dotfiles/common.vim
 "Settings for terminal vim
 
 " Use plugin colorscheme
-set background=dark
+" set background=dark
+
+colorscheme default
 
 " Disable arrow keys
 map <Up> <Nop>
