@@ -41,4 +41,8 @@ set splitbelow
 set splitright
 
 " Spell checking
-set spell spelllang=en_us
+" set spell spelllang=en_us
+
+" Use underline for spelling errors
+" hi clear SpellBad
+" hi SpellBad cterm=underline ctermbg=NONE

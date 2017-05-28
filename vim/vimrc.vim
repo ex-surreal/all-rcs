@@ -8,7 +8,7 @@ source ~/.vim/dotfiles/common.vim
 " Use plugin colorscheme
 " set background=dark
 
-colorscheme default
+syntax enable
 
 " Disable arrow keys
 map <Up> <Nop>
