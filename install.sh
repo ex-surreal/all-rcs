@@ -3,7 +3,7 @@
 if [[ "$OSTYPE" == "darwin"* ]]; then # OSX
 
   if ! [ -x "$(command -v brew)" ]; then
-    /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)" || { exit 1 }
+    /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)" || exit 1
   fi
 
   brew update
@@ -12,7 +12,7 @@ if [[ "$OSTYPE" == "darwin"* ]]; then # OSX
 
 elif [[ "$OSTYPE" == "linux"* ]]; then # LINUX
 
-  sudo pacman -S tmux python zsh git vim --noconfirm -q || { exit 1 }
+  sudo pacman -S tmux python zsh git vim --noconfirm -q || exit 1
 
 fi
 
@@ -23,6 +23,6 @@ cd $(dirname $0)
 dir=$(pwd)
 cd $predir
 
-$dir/vim/script.sh || { exit 1 }
-$dir/zsh/script.sh || { exit 1 }
-$dir/git/script.sh || { exit 1 }
+$dir/vim/script.sh || exit 1
+$dir/zsh/script.sh || exit 1
+$dir/git/script.sh || exit 1
