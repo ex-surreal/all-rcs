@@ -1,13 +1,19 @@
 call plug#begin("$HOME/.vim/plugged")
 
-Plug 'Valloric/YouCompleteMe'
 Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
 Plug 'alvan/vim-closetag'
+
+Plug 'Valloric/YouCompleteMe'
+
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+
 Plug 'scrooloose/nerdtree'
+Plug 'Shougo/unite.vim'
+Plug 'Shougo/vimproc.vim', {'do' : 'make'}
+
 " Plug 'Xuyuanp/nerdtree-git-plugin'
 " Plug 'ctrlpvim/ctrlp.vim'
 Plug 'tpope/vim-fugitive'
@@ -72,7 +78,9 @@ endif
 " let g:syntastic_javascript_checkers = ['eslint']
 
 " close-tag settings
-let g:closetag_filenames = "*.html,*.xhtml,*.phtml,*.js"
+let g:closetag_filenames = "*.html,*.xhtml,*.phtml,*.js,*.php"
 
 " std-io settings
 let g:std_io_user_command = {'javascript.jsx': "'node ' . expand('%:p')"}
+
+" Unite keybindings
