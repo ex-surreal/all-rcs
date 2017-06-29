@@ -23,13 +23,19 @@ Plug 'tpope/vim-repeat'
 Plug 'ex-surreal/vim-std-io'
 Plug 'tpope/vim-dispatch'
 Plug 'airblade/vim-gitgutter'
-" Plug 'vim-syntastic/syntastic'
+Plug 'vim-syntastic/syntastic'
 " Plug 'othree/yajs.vim'
 " Plug 'pangloss/vim-javascript'
 " Plug 'mxw/vim-jsx'
 " Plug 'chemzqm/vim-jsx-improve'
 " Plug 'gavocanov/vim-js-indent'
 " Plug 'mtscout6/syntastic-local-eslint.vim'
+" Plug 'neovimhaskell/haskell-vim'
+" Plug 'idris-hackers/idris-vim'
+Plug 'vim-scripts/haskell.vim'
+Plug 'itchyny/vim-haskell-indent'
+" Plug 'eagletmt/neco-ghc'
+Plug 'eagletmt/ghcmod-vim'
 
 call plug#end()            " required
 
@@ -66,14 +72,14 @@ endif
 " let g:jsx_ext_required = 0
 
 " Syntastic settings
-" set statusline+=%#warningmsg#
-" set statusline+=%{SyntasticStatuslineFlag()}
-" set statusline+=%*
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
 
-" let g:syntastic_always_populate_loc_list = 1
-" let g:syntastic_auto_loc_list = 1
-" let g:syntastic_check_on_open = 1
-" let g:syntastic_check_on_wq = 0
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 0
+let g:syntastic_check_on_open = 0
+let g:syntastic_check_on_wq = 0
 
 " let g:syntastic_javascript_checkers = ['eslint']
 
@@ -81,6 +87,12 @@ endif
 let g:closetag_filenames = "*.html,*.xhtml,*.phtml,*.js,*.php"
 
 " std-io settings
-let g:std_io_user_command = {'javascript.jsx': "'node ' . expand('%:p')"}
+let g:std_io_user_command = {'javascript.jsx': "'node ' . expand('%:p')", 'haskell': "'ghc ' . expand('%:p') . ' -outputdir=' . expand('%:h') . '/.ghc-outputdir -o ' . expand('%:p:r') . '.o && ' . expand('%:p:r') . '.o'"}
 
 " Unite keybindings
+
+" naco-ghc settings
+" Disable haskell-vim omnifunc
+" let g:haskellmode_completion_ghc = 0
+" autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
+" let g:ycm_semantic_triggers = {'haskell' : ['.']}
