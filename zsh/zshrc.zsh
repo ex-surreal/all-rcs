@@ -81,7 +81,7 @@ fi
 #
 # Example aliases
 
-alias breu="brew update && brew upgrade --outdated && brew cleanup && brew cask cleanup"
+alias breu="brew update && brew upgrade --outdated && brew cleanup"
 alias gpp="g++ --std=c++11 -Wall"
 
 stty -ixon
