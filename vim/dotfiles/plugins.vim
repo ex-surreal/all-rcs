@@ -18,6 +18,7 @@ Plug 'Shougo/vimproc.vim', {'do' : 'make'}
 " Plug 'ctrlpvim/ctrlp.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-unimpaired'
 " Plug 'majutsushi/tagbar'
 " Plug 'craigemery/vim-autotag'
 Plug 'ex-surreal/vim-std-io'
