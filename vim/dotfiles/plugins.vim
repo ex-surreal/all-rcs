@@ -81,6 +81,10 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 0
 let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
+let g:syntastic_error_symbol = "EE"
+let g:syntastic_warning_symbol = "WW"
+let g:syntastic_style_error_symbol = "SE"
+let g:syntastic_style_warning_symbol = "SW"
 
 " let g:syntastic_javascript_checkers = ['eslint']
 
@@ -88,7 +92,7 @@ let g:syntastic_check_on_wq = 0
 let g:closetag_filenames = "*.html,*.xhtml,*.phtml,*.js,*.php"
 
 " std-io settings
-let g:std_io_user_command = {'javascript.jsx': "'node ' . expand('%:p')", 'haskell': "'ghc ' . expand('%:p') . ' -outputdir=' . expand('%:h') . '/.ghc-outputdir -o ' . expand('%:p:r') . '.o && ' . expand('%:p:r') . '.o'"}
+let g:std_io_user_command = {'javascript.jsx': "'node ' . expand('%:p')", 'haskell': "'ghc ' . expand('%:p') . ' -outputdir=' . expand('%:h') . '/.ghc-outputdir -o ' . expand('%:p:r') . '.o && ' . expand('%:p:r') . '.o'", 'perl': "'perl ' . expand('%:p')"}
 
 " Unite keybindings
 
