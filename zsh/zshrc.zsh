@@ -45,7 +45,7 @@ export UPDATE_ZSH_DAYS=5
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git z python brew zsh-syntax-highlighting brew-cask vi-mode history-substring-search)
+plugins=(z brew randeme zsh-syntax-highlighting vi-mode history-substring-search cyanide-random-happiness)
 
 # User configuration
 
