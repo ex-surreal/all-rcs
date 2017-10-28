@@ -11,8 +11,9 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
 Plug 'scrooloose/nerdtree'
-Plug 'Shougo/unite.vim'
-Plug 'Shougo/vimproc.vim', {'do' : 'make'}
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+Plug 'mileszs/ack.vim'
 
 " Plug 'Xuyuanp/nerdtree-git-plugin'
 " Plug 'ctrlpvim/ctrlp.vim'
@@ -101,3 +102,11 @@ let g:std_io_user_command = {'javascript.jsx': "'node ' . expand('%:p')", 'haske
 " let g:haskellmode_completion_ghc = 0
 " autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
 " let g:ycm_semantic_triggers = {'haskell' : ['.']}
+
+" fzf settings
+nnoremap <leader>] :Files<cr>
+nnoremap <leader>[ :Buffers<cr>
+
+" ack settings
+let g:ackprg = 'ag --vimgrep'
+nnoremap <leader>\ :Ack 
