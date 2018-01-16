@@ -29,6 +29,10 @@ set tabstop=2 expandtab softtabstop=2 shiftwidth=2
 " Remove swap file
 set noswapfile
 
+" Search options
+set nohlsearch
+set hidden
+
 " Split options
 " Navigate easily
 nnoremap <C-J> <C-W><C-J>
