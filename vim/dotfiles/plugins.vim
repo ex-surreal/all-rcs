@@ -14,51 +14,34 @@ Plug 'scrooloose/nerdtree'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'mileszs/ack.vim'
+Plug 'ex-surreal/vim-action-ack'
 
-" Plug 'Xuyuanp/nerdtree-git-plugin'
-" Plug 'ctrlpvim/ctrlp.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-unimpaired'
-" Plug 'majutsushi/tagbar'
-" Plug 'craigemery/vim-autotag'
 Plug 'ex-surreal/vim-std-io'
 Plug 'tpope/vim-dispatch'
 Plug 'airblade/vim-gitgutter'
 Plug 'vim-syntastic/syntastic'
-" Plug 'othree/yajs.vim'
-" Plug 'pangloss/vim-javascript'
-" Plug 'mxw/vim-jsx'
-" Plug 'chemzqm/vim-jsx-improve'
-" Plug 'gavocanov/vim-js-indent'
-" Plug 'mtscout6/syntastic-local-eslint.vim'
-" Plug 'neovimhaskell/haskell-vim'
-" Plug 'idris-hackers/idris-vim'
-Plug 'vim-scripts/haskell.vim'
-Plug 'itchyny/vim-haskell-indent'
-" Plug 'eagletmt/neco-ghc'
-Plug 'eagletmt/ghcmod-vim'
 
 call plug#end()            " required
 
 let g:ycm_confirm_extra_conf = 0
 set completeopt-=preview
 let g:ycm_add_preview_to_completeop = 0
-let g:ycm_key_list_select_completion = ['<TAB>']
-let g:ycm_key_list_previous_completion = ['<S-TAB>']
+let g:ycm_key_list_select_completion = ['<TAB>', '<C-n>']
+let g:ycm_key_list_previous_completion = ['<S-TAB>', '<C-p>']
 let g:ycm_always_populate_location_list = 1
 
 " Settings for Nerd Tree
-map <C-n> :NERDTreeToggle<CR>
-
-" Extra Settings
-" autocmd FileType java setlocal omnifunc=javacomplete#Complete
+noremap <C-n> :NERDTreeToggle<CR>
+nnoremap <leader>n :NERDTreeFind<CR>
 
 " Airline settings
 set laststatus=2
 let g:airline_theme = 'base16_default'
 
-" Fixing the issue 'delaied jumping to normal mode' 
+" Fixing the issue 'delayed jumping to normal mode' 
 if ! has('gui_running')
   set ttimeoutlen=10
   augroup FastEscape
@@ -68,11 +51,6 @@ if ! has('gui_running')
   augroup END
 endif
 
-" let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files']
-
-" Allow JSX in normal JS files
-" let g:jsx_ext_required = 0
-
 " Syntastic settings
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
@@ -80,33 +58,25 @@ set statusline+=%*
 
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 0
-let g:syntastic_check_on_open = 0
+let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
-let g:syntastic_error_symbol = "EE"
-let g:syntastic_warning_symbol = "WW"
-let g:syntastic_style_error_symbol = "SE"
-let g:syntastic_style_warning_symbol = "SW"
-
-" let g:syntastic_javascript_checkers = ['eslint']
 
 " close-tag settings
 let g:closetag_filenames = "*.html,*.xhtml,*.phtml,*.js,*.php"
 
 " std-io settings
-let g:std_io_user_command = {'javascript.jsx': "'node ' . expand('%:p')", 'haskell': "'ghc ' . expand('%:p') . ' -outputdir=' . expand('%:h') . '/.ghc-outputdir -o ' . expand('%:p:r') . '.o && ' . expand('%:p:r') . '.o'", 'perl': "'perl ' . expand('%:p')"}
-
-" Unite keybindings
-
-" naco-ghc settings
-" Disable haskell-vim omnifunc
-" let g:haskellmode_completion_ghc = 0
-" autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
-" let g:ycm_semantic_triggers = {'haskell' : ['.']}
+let g:std_io_user_command = {
+  \'javascript.jsx': "'node ' . expand('%:p')",
+  \'haskell': "'ghc ' . expand('%:p') . ' -outputdir=' . expand('%:h') . '/.ghc-outputdir -o ' . expand('%:p:r') . '.o && ' . expand('%:p:r') . '.o'",
+  \'perl': "'perl ' . expand('%:p')"
+\}
 
 " fzf settings
-nnoremap <leader>] :Files<cr>
+nnoremap <leader>] :GFiles --chached<cr>
 nnoremap <leader>[ :Buffers<cr>
+nnoremap <leader>p :Gfiles?
+nnoremap <leader>\ :Tags
 
 " ack settings
 let g:ackprg = 'ag --vimgrep'
-nnoremap <leader>\ :Ack 
+nnoremap <leader>' :Ack 
