@@ -6,9 +6,9 @@ if [[ "$OSTYPE" == "darwin"* ]]; then # OSX
     /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)" || exit 1
   fi
 
-  brew update
+  # brew update
   # Install minimum env
-  brew install zsh vim git tmux
+  # brew install zsh vim git tmux
 
 elif [[ "$OSTYPE" == "linux"* ]]; then # LINUX
 

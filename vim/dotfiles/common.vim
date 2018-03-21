@@ -32,6 +32,7 @@ set noswapfile
 " Search options
 set nohlsearch
 set hidden
+set incsearch
 
 " Split options
 " Navigate easily
@@ -50,6 +51,9 @@ set splitright
 " Use underline for spelling errors
 " hi clear SpellBad
 " hi SpellBad cterm=underline ctermbg=NONE
+
+" Fast spell correction
+nnoremap <C-Q> 1z=
 
 " Add these to your vimrc to automatically keep the tags file up to date.
 " Unfortunately silent means the errors look a little ugly, I suppose I could

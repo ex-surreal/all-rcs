@@ -5,7 +5,7 @@ export ZSH="$HOME/.oh-my-zsh"
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="robbyrussell"
+ZSH_THEME="refined"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -45,7 +45,7 @@ export UPDATE_ZSH_DAYS=5
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(z brew randeme zsh-syntax-highlighting vi-mode history-substring-search cyanide-random-happiness)
+plugins=(z brew zsh-syntax-highlighting vi-mode history-substring-search)
 
 # User configuration
 
@@ -95,8 +95,3 @@ export KEYTIMEOUT=1
 export MODE_INDICATOR="[NORMAL]"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-export NVM_DIR="$HOME/.nvm"
-function nvm {
-  . "$(brew --prefix nvm)/nvm.sh" && echo 'nvm installed'
-}
