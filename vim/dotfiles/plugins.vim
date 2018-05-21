@@ -19,7 +19,6 @@ Plug 'ex-surreal/vim-action-ack'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-unimpaired'
-Plug 'ex-surreal/vim-std-io'
 Plug 'tpope/vim-dispatch'
 Plug 'airblade/vim-gitgutter'
 Plug 'vim-syntastic/syntastic'
@@ -42,14 +41,12 @@ set laststatus=2
 let g:airline_theme = 'base16_default'
 
 " Fixing the issue 'delayed jumping to normal mode' 
-if ! has('gui_running')
-  set ttimeoutlen=10
-  augroup FastEscape
-    autocmd!
-    au InsertEnter * set timeoutlen=0
-    au InsertLeave * set timeoutlen=1000
-  augroup END
-endif
+set ttimeoutlen=10
+augroup FastEscape
+  autocmd!
+  au InsertEnter * set timeoutlen=0
+  au InsertLeave * set timeoutlen=1000
+augroup END
 
 " Syntastic settings
 set statusline+=%#warningmsg#
@@ -64,19 +61,12 @@ let g:syntastic_check_on_wq = 0
 " close-tag settings
 let g:closetag_filenames = "*.html,*.xhtml,*.phtml,*.js,*.php"
 
-" std-io settings
-let g:std_io_user_command = {
-  \'javascript.jsx': "'node ' . expand('%:p')",
-  \'haskell': "'ghc ' . expand('%:p') . ' -outputdir=' . expand('%:h') . '/.ghc-outputdir -o ' . expand('%:p:r') . '.o && ' . expand('%:p:r') . '.o'",
-  \'perl': "'perl ' . expand('%:p')"
-\}
-
 " fzf settings
-nnoremap <leader>] :GFiles --chached<cr>
+nnoremap <leader>] :GFiles<cr>
 nnoremap <leader>[ :Buffers<cr>
 nnoremap <leader>p :Gfiles?
 nnoremap <leader>\ :Tags
 
 " ack settings
 let g:ackprg = 'ag --vimgrep'
-nnoremap <leader>' :Ack 
+nnoremap <leader>' :Ack! 
