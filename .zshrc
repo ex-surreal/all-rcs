@@ -1,5 +1,5 @@
 bindkey -v
 
-export HISTFILE=~/.zsh_history
-[ -f ~/.shell_profile ] && source ~/.shell_profile
+[ -f ~/.zsh_profile ] && source ~/.zsh_profile
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+export HISTFILE=~/.zsh_history
