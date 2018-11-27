@@ -99,6 +99,15 @@ nnoremap <silent> <c-]> :setl iskeyword=@,_,.,48-57,39<cr><c-]>
     \:setl iskeyword=@,48-57,_,192-255<cr>
 
 " Exit if vim-plug is not installed 
+function! BuildYCM(info)
+  " info is a dictionary with 3 fields
+  " - name:   name of the plugin
+  " - status: 'installed', 'updated', or 'unchanged'
+  " - force:  set on PlugInstall! or PlugUpdate!
+  if a:info.status == 'installed' || a:info.force
+    !./install.py --clang-completer
+  endif
+endfunction
 
 call plug#begin("$HOME/.vim/plugged")
 
@@ -119,11 +128,8 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-dispatch'
 Plug 'airblade/vim-gitgutter'
-Plug 'w0rp/ale'
-Plug 'nicwest/vim-http'
 
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
-Plug 'vim-scripts/Conque-GDB'
+Plug 'Valloric/YouCompleteMe', { 'do': function('BuildYCM') }
 
 call plug#end()            " required
 
@@ -158,8 +164,8 @@ let g:closetag_filenames = "*.html,*.xhtml,*.phtml,*.js,*.php"
 " fzf settings
 nnoremap <leader>] :GFiles<cr>
 nnoremap <leader>[ :Buffers<cr>
-nnoremap <leader>p :Gfiles?
-nnoremap <leader>\ :Tags
+nnoremap <leader>p :GFiles?<cr>
+nnoremap <leader>\ :Tags<cr>
 
 " ack settings
 let g:ackprg = 'ag --vimgrep'
