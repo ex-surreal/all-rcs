@@ -7,7 +7,10 @@ export KEYTIMEOUT=1 # Reduce to dalay to go to normal mode
 
 stty -ixon
 
+alias ls='ls -G'
 alias ll='ls -l'
 alias la='ll -A'
+
+[ -f /usr/local/etc/profile.d/z.sh ] && source /usr/local/etc/profile.d/z.sh
 
 # vim: ft=zsh
