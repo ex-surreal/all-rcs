@@ -1,8 +1,8 @@
 #!/bin/sh
 
 
-DIR=`dirname $(realpath $0)`
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )"
 
-for file in .vimrc .gitconfig .zshrc .tmux.conf; do
-	[ -f $DIR/$file ] && ln -fs $DIR/$file $HOME
+for file in .vimrc .gitconfig .zshrc .tmux.conf .iterm .shell_profile; do
+	[ -e $DIR/$file ] && ln -fs $DIR/$file $HOME
 done
