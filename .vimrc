@@ -81,11 +81,10 @@ set splitbelow
 set splitright
 
 " Spell checking
-" set spell spelllang=en_us
+set spell spelllang=en_us
 
-" Use underline for spelling errors
-" hi clear SpellBad
-" hi SpellBad cterm=underline ctermbg=NONE
+" Don't break words
+set linebreak
 
 " Fast spell correction
 nnoremap <C-Q> 1z=
@@ -131,6 +130,8 @@ Plug 'airblade/vim-gitgutter'
 
 Plug 'Valloric/YouCompleteMe', { 'do': function('BuildYCM') }
 
+Plug 'joshdick/onedark.vim'
+
 call plug#end()            " required
 
 " Settings for Nerd Tree
@@ -170,3 +171,14 @@ nnoremap <leader>\ :Tags<cr>
 " ack settings
 let g:ackprg = 'ag --vimgrep'
 nnoremap <leader>' :Ack! 
+
+" YCM config
+let g:ycm_confirm_extra_conf = 0
+let g:ycm_always_populate_location_list = 1
+autocmd FileType c,cpp nnoremap <buffer><silent> <Leader>yf :YcmCompleter FixIt<CR>
+autocmd FileType c,cpp nnoremap <buffer><silent> <C-]> :YcmCompleter GoTo<CR>
+
+" Colorscheme
+if !empty(globpath(&rtp, 'colors/onedark.vim'))
+  colorscheme onedark
+endif
