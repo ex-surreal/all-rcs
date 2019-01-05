@@ -25,12 +25,15 @@ setopt HIST_FIND_NO_DUPS # Do not display a previously found event.
 setopt HIST_IGNORE_SPACE # Do not record an event starting with a space.
 setopt HIST_SAVE_NO_DUPS # Do not write a duplicate event to the history file.
 
+autoload -U compinit
+compinit
+
+bindkey -v
+
 bindkey "^[[A" history-beginning-search-backward
 bindkey "^[[B" history-beginning-search-forward
 bindkey "^?" backward-delete-char
 
 export PROMPT=$'%~\n%n@%m %% '
-
-bindkey -v
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
