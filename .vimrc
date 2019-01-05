@@ -1,4 +1,8 @@
-set nocompatible              " be iMproved, required
+" Required
+set nocompatible
+
+" UTF-8
+set encoding=utf-8
 
 " Settings for terminal vim
 
