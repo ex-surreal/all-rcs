@@ -1,16 +1,6 @@
 set nocompatible              " be iMproved, required
 
-" Attempt to determine the type of a file based on its name and possibly its
-" contents. Use this to allow intelligent auto-indenting for each filetype,
-" and for plugins that are filetype specific.
-filetype indent plugin on
-
-"Settings for terminal vim
-
-" Use plugin colorscheme
-" set background=dark
-
-syntax enable
+" Settings for terminal vim
 
 " Disable arrow keys
 map <Up> <Nop>
@@ -22,9 +12,10 @@ imap <Down> <Nop>
 imap <Left> <Nop>
 imap <Right> <Nop>
 
-" Use <c-s> for saving Required: $ stty -ixon 
+" Use <c-s> for saving Required: $ stty -ixon
 inoremap <c-s> <esc>:w<cr>
-noremap <c-s> :w<cr>
+vnoremap <c-s> <esc>:w<cr>
+nnoremap <c-s> :w<cr>
 
 " Disable mouse
 set mouse=
@@ -38,6 +29,21 @@ set secure
 " Show the sign column always
 set signcolumn=yes
 
+" Disable auto match highlight
+set nohlsearch
+
+" Enable incremental search
+set incsearch
+
+" Enable buffer switching even the buffer is dirty
+set hidden
+
+" ====================== Common ======================
+" Attempt to determine the type of a file based on its name and possibly its
+" contents. Use this to allow intelligent auto-indenting for each filetype,
+" and for plugins that are filetype specific.
+filetype indent plugin on
+
 " Syntax start
 syntax enable
 
@@ -47,7 +53,7 @@ set smartcase
 
 " Allow backspacing over autoindent, line breaks and start of insert action
 set backspace=indent,eol,start
- 
+
 " When opening a new line and no filetype-specific indenting is enabled, keep
 " the same indent as the line you're currently on. Useful for READMEs, etc.
 set autoindent
@@ -59,15 +65,16 @@ set number
 set relativenumber
 
 " Indentation
-set tabstop=2 expandtab softtabstop=2 shiftwidth=2
+set tabstop=4 expandtab softtabstop=4 shiftwidth=4
 
 " Remove swap file
 set noswapfile
 
-" Search options
-set nohlsearch
-set hidden
-set incsearch
+" Complete option for <C-N>
+set complete=.,w,b,u,t
+
+" No automatic end of line
+set nofixeol
 
 " Split options
 " Navigate easily
@@ -80,105 +87,102 @@ nnoremap <C-H> <C-W><C-H>
 set splitbelow
 set splitright
 
-" Spell checking
-set spell spelllang=en_us
+autocmd BufRead,BufNewFile *.hql :set filetype=sql
 
-" Don't break words
+" Don't break word while wrapping
 set linebreak
 
-" Fast spell correction
-nnoremap <C-Q> 1z=
-
-" If you use qualified tags, then you have to change iskeyword to include
-" a dot.  Unfortunately, that affects a lot of other commands, such as
-" w, and \< \> regexes used by * and #.  For me, this is confusing because
-" it's inconsistent with vim keys everywhere else.
-" This binding temporarily modifies iskeyword just for the ^] command.
-nnoremap <silent> <c-]> :setl iskeyword=@,_,.,48-57,39<cr><c-]>
-    \:setl iskeyword=@,48-57,_,192-255<cr>
-
-" Exit if vim-plug is not installed 
+" Exit if vim-plug is not installed
 function! BuildYCM(info)
   " info is a dictionary with 3 fields
   " - name:   name of the plugin
   " - status: 'installed', 'updated', or 'unchanged'
   " - force:  set on PlugInstall! or PlugUpdate!
   if a:info.status == 'installed' || a:info.force
-    !./install.py --clang-completer
+    !./install.py --java-completer
   endif
 endfunction
 
+" netrw settings
+let g:netrw_banner = 0
+let g:netrw_liststyle = 3
+let g:netrw_browse_split = 4
+let g:netrw_altv = 1
+let g:netrw_winsize = 30
+autocmd FileType netrw setl bufhidden=delete
+
+" ====================== Plugin ======================
 call plug#begin("$HOME/.vim/plugged")
 
 Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
 Plug 'alvan/vim-closetag'
+
+Plug 'timakro/vim-searchant'
+
 Plug 'itchyny/lightline.vim'
 
-Plug 'scrooloose/nerdtree'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf', {'dir': '~/.fzf', 'do': './install --all'}
 Plug 'junegunn/fzf.vim'
-Plug 'mileszs/ack.vim'
-Plug 'ex-surreal/vim-action-ack'
+Plug 'simeji/winresizer'
 
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-unimpaired'
-Plug 'tpope/vim-dispatch'
 Plug 'airblade/vim-gitgutter'
+
+Plug 'sonph/onehalf', {'rtp': 'vim/'}
 
 Plug 'Valloric/YouCompleteMe', { 'do': function('BuildYCM') }
 
-Plug 'joshdick/onedark.vim'
-
 call plug#end()            " required
 
-" Settings for Nerd Tree
-noremap <C-n> :NERDTreeToggle<CR>
-nnoremap <leader>n :NERDTreeFind<CR>
-
-" Lightline settings
+" lightline settings
 set laststatus=2
 set noshowmode
 let g:lightline = {
-  \ 'colorscheme': 'wombat',
-  \ 'active': {
-    \ 'left': [
-      \ ['mode', 'paste'],
-      \ ['readonly', 'relativepath', 'modified']
-    \ ]
-  \ }
+    \ 'colorscheme': 'onehalfdark',
+    \ 'active': {
+        \ 'left': [
+            \ ['mode', 'paste'],
+            \ ['gitbranch'],
+            \ ['readonly', 'relativepath', 'modified']
+        \ ]
+    \ },
+    \ 'component_function': {
+    \   'gitbranch': 'fugitive#head'
+    \ },
 \ }
 
-" Fixing the issue 'delayed jumping to normal mode' 
+" Fixing the issue 'delaied jumping to normal mode'
 set ttimeoutlen=10
 augroup FastEscape
-  autocmd!
-  au InsertEnter * set timeoutlen=0
-  au InsertLeave * set timeoutlen=1000
+    autocmd!
+    au InsertEnter * set timeoutlen=0
+    au InsertLeave * set timeoutlen=1000
 augroup END
 
 " close-tag settings
-let g:closetag_filenames = "*.html,*.xhtml,*.phtml,*.js,*.php"
+let g:closetag_filenames = "*.html,*.xhtml,*.phtml,*.js,*.php,*.tmpl"
 
 " fzf settings
-nnoremap <leader>] :GFiles<cr>
-nnoremap <leader>[ :Buffers<cr>
+nnoremap <leader>] :GFiles --cached<cr>
+nnoremap <leader>[ :Buffer<cr>
 nnoremap <leader>p :GFiles?<cr>
-nnoremap <leader>\ :Tags<cr>
+nnoremap <leader>\ :Tags<CR>
 
-" ack settings
-let g:ackprg = 'ag --vimgrep'
-nnoremap <leader>' :Ack! 
-
-" YCM config
-let g:ycm_confirm_extra_conf = 0
-let g:ycm_always_populate_location_list = 1
-autocmd FileType c,cpp nnoremap <buffer><silent> <Leader>yf :YcmCompleter FixIt<CR>
-autocmd FileType c,cpp nnoremap <buffer><silent> <C-]> :YcmCompleter GoTo<CR>
+" For grepping
+if executable("ag")
+    set grepprg=ag\ --nogroup\ --nocolor\ --vimgrep
+endif
+function! MyGrep(type)
+    execute ":silent grep " . shellescape(@@)
+    redraw!
+endfunction
+nnoremap <silent> ga :set operatorfunc=MyGrep<CR>g@
 
 " Colorscheme
-if !empty(globpath(&rtp, 'colors/onedark.vim'))
-  colorscheme onedark
+if !empty(globpath(&rtp, 'colors/onehalfdark.vim'))
+  colorscheme onehalfdark
 endif
