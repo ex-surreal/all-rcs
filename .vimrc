@@ -180,11 +180,16 @@ nnoremap <leader>\ :Tags<CR>
 if executable("ag")
     set grepprg=ag\ --nogroup\ --nocolor\ --vimgrep
 endif
-function! MyGrep(type)
-    execute ":silent grep " . shellescape(@@)
+function! GrepMotion(type)
+    let tmp = @@
+    silent exe "normal! `[v`]y"
+    silent execute "grep! " . shellescape(@@)
+    let @@ = tmp
+    copen
     redraw!
 endfunction
-nnoremap <silent> ga :set operatorfunc=MyGrep<CR>g@
+command! -nargs=+ Grep silent execute 'grep! <args>' | copen | redraw!
+nnoremap ga :set operatorfunc=MyGrep<CR>g@
 
 " Colorscheme
 if !empty(globpath(&rtp, 'colors/onehalfdark.vim'))
