@@ -181,6 +181,9 @@ if executable("ag")
     set grepprg=ag\ --nogroup\ --nocolor\ --vimgrep
 endif
 function! GrepMotion(type)
+    if a:type !=# 'char'
+        return
+    endif
     let tmp = @@
     silent exe "normal! `[v`]y"
     silent execute "grep! " . shellescape(@@)
@@ -189,7 +192,7 @@ function! GrepMotion(type)
     redraw!
 endfunction
 command! -nargs=+ Grep silent execute 'grep! <args>' | copen | redraw!
-nnoremap ga :set operatorfunc=MyGrep<CR>g@
+nnoremap ga :set operatorfunc=GrepMotion<CR>g@
 
 " Colorscheme
 if !empty(globpath(&rtp, 'colors/onehalfdark.vim'))
