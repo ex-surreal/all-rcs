@@ -129,7 +129,6 @@ Plug 'itchyny/lightline.vim'
 
 Plug 'junegunn/fzf', {'dir': '~/.fzf', 'do': './install --all'}
 Plug 'junegunn/fzf.vim'
-Plug 'simeji/winresizer'
 
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
