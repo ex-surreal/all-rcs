@@ -119,20 +119,16 @@ autocmd FileType netrw setl bufhidden=delete
 call plug#begin("$HOME/.vim/plugged")
 
 Plug 'jiangmiao/auto-pairs'
-Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
-Plug 'alvan/vim-closetag'
-
-Plug 'timakro/vim-searchant'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-unimpaired'
 
 Plug 'itchyny/lightline.vim'
 
-Plug 'junegunn/fzf', {'dir': '~/.fzf', 'do': './install --all'}
 Plug 'junegunn/fzf.vim'
 
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
-Plug 'tpope/vim-unimpaired'
 Plug 'airblade/vim-gitgutter'
 
 Plug 'sonph/onehalf', {'rtp': 'vim/'}
@@ -175,6 +171,16 @@ nnoremap <leader>[ :Buffer<cr>
 nnoremap <leader>p :GFiles?<cr>
 nnoremap <leader>\ :Tags<CR>
 
+" Colorscheme
+if !empty(globpath(&rtp, 'colors/onehalfdark.vim'))
+  colorscheme onehalfdark
+endif
+
+" YCM config
+let g:ycm_auto_trigger = 0
+let g:ycm_always_populate_location_list = 1
+let g:ycm_confirm_extra_conf = 0;
+
 " For grepping
 if executable("ag")
     set grepprg=ag\ --nogroup\ --nocolor\ --vimgrep
@@ -192,8 +198,3 @@ function! GrepMotion(type)
 endfunction
 command! -nargs=+ Grep silent execute 'grep! <args>' | copen | redraw!
 nnoremap ga :set operatorfunc=GrepMotion<CR>g@
-
-" Colorscheme
-if !empty(globpath(&rtp, 'colors/onehalfdark.vim'))
-  colorscheme onehalfdark
-endif
