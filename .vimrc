@@ -179,7 +179,7 @@ endif
 " YCM config
 let g:ycm_auto_trigger = 0
 let g:ycm_always_populate_location_list = 1
-let g:ycm_confirm_extra_conf = 0;
+let g:ycm_confirm_extra_conf = 0
 
 " For grepping
 if executable("ag")
