@@ -36,7 +36,7 @@ bindkey "^[[A" history-beginning-search-backward
 bindkey "^[[B" history-beginning-search-forward
 bindkey "^?" backward-delete-char
 
-export PROMPT=$'%F{4}%~%f\n%F{6}%n@%m %%%f '
+export PROMPT=$'%F{4}%~%f\n%F{6}%n @ %m %%%f '
 
 safe-source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 safe-source ~/.fzf.zsh

@@ -125,6 +125,7 @@ Plug 'tpope/vim-unimpaired'
 
 Plug 'itchyny/lightline.vim'
 
+Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
 
 Plug 'tpope/vim-fugitive'
