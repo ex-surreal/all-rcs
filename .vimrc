@@ -199,3 +199,6 @@ function! GrepMotion(type)
 endfunction
 command! -nargs=+ Grep silent execute 'grep! <args>' | copen | redraw!
 nnoremap ga :set operatorfunc=GrepMotion<CR>g@
+
+" git-gutter settings
+autocmd BufWritePost * if exists(":GitGutter") | GitGutter | endif
