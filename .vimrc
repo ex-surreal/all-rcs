@@ -186,19 +186,45 @@ let g:ycm_confirm_extra_conf = 0
 if executable("ag")
     set grepprg=ag\ --nogroup\ --nocolor\ --vimgrep
 endif
-function! GrepMotion(type)
-    if a:type !=# 'char'
-        return
+
+function! s:putInQuickFix(ch, expr)
+    caddexpr a:expr
+endfunction
+
+function! s:logError(ch, msg)
+    echoerr a:msg
+endfunction
+
+function! Grep(args, bang)
+    let l:cmd = &grepprg . ' ' . a:args
+    call setqflist([])
+    if exists('g:uc_grep_running_job')
+        call job_stop(g:uc_grep_running_job, 'kill')
     endif
+    let g:uc_grep_running_job = job_start(['sh', '-c', l:cmd], {
+        \ 'out_cb': function('s:putInQuickFix'),
+        \ 'err_cb': function('s:logError')
+    \ })
+    let l:buf = bufwinnr(bufname('%'))
+    copen
+    if a:bang | execute l:buf . 'wincmd w' | endif
+endfunction
+
+function! GrepMotion(type)
+    if a:type !=# 'char' | return | endif
     let tmp = @@
     silent exe "normal! `[v`]y"
-    silent execute "grep! " . shellescape(@@)
+    call Grep(shellescape(@@))
     let @@ = tmp
-    copen
-    redraw!
 endfunction
-command! -nargs=+ Grep silent execute 'grep! <args>' | copen | redraw!
+
+command! -bang -nargs=+ Grep call Grep(<q-args>, <bang>0)
 nnoremap ga :set operatorfunc=GrepMotion<CR>g@
 
 " git-gutter settings
 autocmd BufWritePost * if exists(":GitGutter") | GitGutter | endif
+
+augroup Nasm
+    autocmd!
+    autocmd FileType asm set syntax=nasm
+augroup END
