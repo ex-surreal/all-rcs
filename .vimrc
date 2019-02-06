@@ -214,7 +214,7 @@ function! GrepMotion(type)
     if a:type !=# 'char' | return | endif
     let tmp = @@
     silent exe "normal! `[v`]y"
-    call Grep(shellescape(@@))
+    call Grep(shellescape(@@), 1)
     let @@ = tmp
 endfunction
 
