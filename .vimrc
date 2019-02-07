@@ -185,6 +185,8 @@ let g:ycm_confirm_extra_conf = 0
 " For grepping
 if executable("ag")
     set grepprg=ag\ --nogroup\ --nocolor\ --vimgrep
+else
+    set grepprg=git\ grep\ --cached\ --untracked\ --exclude-standard
 endif
 
 function! s:putInQuickFix(ch, expr)
