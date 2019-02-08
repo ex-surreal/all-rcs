@@ -96,6 +96,11 @@ autocmd BufRead,BufNewFile *.hql :set filetype=sql
 " Don't break word while wrapping
 set linebreak
 
+" Use the command window
+nnoremap : q:i
+nnoremap / q/i
+nnoremap ? q?i
+
 " Exit if vim-plug is not installed
 function! BuildYCM(info)
   " info is a dictionary with 3 fields
@@ -230,3 +235,20 @@ augroup Nasm
     autocmd!
     autocmd FileType asm set syntax=nasm
 augroup END
+
+function Curl(args, bang)
+    let l:cmd = ['sh', '-c', a:args]
+    if exists('g:curl_running_job')
+        call job_stop(g:curl_running_job, 'kill')
+    endif
+    let l:buf = bufnr('%')
+    if buflisted('curl-out') | bd! curl-out | endif
+    silent! vs +set\ buftype=nofile\ ft=json curl-out
+    if a:bang | silent! execute 'b ' . l:buf | endif
+    let g:curl_running_job = job_start(l:cmd, {
+        \ 'err_buf': bufnr('curl-out'),
+        \ 'err_io': 'buffer',
+        \ 'out_buf': bufnr('curl-out'),
+        \ 'out_io': 'buffer'
+    \})
+endfunction
