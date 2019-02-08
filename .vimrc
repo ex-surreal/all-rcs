@@ -98,8 +98,6 @@ set linebreak
 
 " Use the command window
 nnoremap : q:i
-nnoremap / q/i
-nnoremap ? q?i
 
 " Exit if vim-plug is not installed
 function! BuildYCM(info)
@@ -139,7 +137,7 @@ Plug 'airblade/vim-gitgutter'
 
 Plug 'sonph/onehalf', {'rtp': 'vim/'}
 
-Plug 'Valloric/YouCompleteMe', { 'do': function('BuildYCM') }
+" Plug 'Valloric/YouCompleteMe', { 'do': function('BuildYCM') }
 
 call plug#end()            " required
 
