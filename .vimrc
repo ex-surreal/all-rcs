@@ -234,19 +234,22 @@ augroup Nasm
     autocmd FileType asm set syntax=nasm
 augroup END
 
-function Curl(args, bang)
+function Clapper(args, bang, out_buf)
     let l:cmd = ['sh', '-c', a:args]
-    if exists('g:curl_running_job')
-        call job_stop(g:curl_running_job, 'kill')
+    if exists('g:clapper_running_job')
+        call job_stop(g:clapper_running_job, 'kill')
     endif
     let l:buf = bufnr('%')
-    if buflisted('curl-out') | bd! curl-out | endif
-    silent! vs +set\ buftype=nofile\ ft=json curl-out
+    if buflisted(a:out_buf) | execute 'bd! ' . a:out_buf | endif
+    execute 'silent! vs +set\ buftype=nofile\ ft=json\ nowrap ' . a:out_buf
     if a:bang | silent! execute 'b ' . l:buf | endif
-    let g:curl_running_job = job_start(l:cmd, {
-        \ 'err_buf': bufnr('curl-out'),
+    let g:clapper_running_job = job_start(l:cmd, {
+        \ 'err_buf': bufnr(a:out_buf),
         \ 'err_io': 'buffer',
-        \ 'out_buf': bufnr('curl-out'),
+        \ 'out_buf': bufnr(a:out_buf),
         \ 'out_io': 'buffer'
     \})
 endfunction
+
+command! -bang -nargs=1 -complete=shellcmd Clapper call Clapper(<q-args>, <bang>0, 'clapper-out')
+nnoremap <leader>c :execute ':Clapper ' . expand('%:p')<CR>
